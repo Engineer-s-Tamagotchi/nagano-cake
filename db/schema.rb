@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 2023_10_19_064000) do
     t.string "name", null: false
     t.text "explanation", null: false
     t.integer "excluding_tax_price", null: false
-    t.boolean "is_no_sale", default: true, null: false
+    t.boolean "is_on_sale", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
