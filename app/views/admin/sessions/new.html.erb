@@ -7,7 +7,7 @@
       <table class="table table-borderless">
         <tr>
           <td><%= f.label :email, "メールアドレス" %></td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></td>
         </tr>
         <tr>
           <td><%= f.label :password, "パスワード" %></td>
