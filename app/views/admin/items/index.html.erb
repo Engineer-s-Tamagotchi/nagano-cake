@@ -14,7 +14,7 @@
     <% @items.each do |item| %>
     <tr>
       <td><%= item.id %></td>
-      <td><%= link_to item.name, item_path(item.id) %></td>
+      <td><%= link_to item.name, admin_item_path(item.id) %></td>
       <td><%= item.excluding_tax_price %>円</td>
       <td><%= item.genre.name %></td>
       <td><%= item.is_on_sale_i18n %></td>
