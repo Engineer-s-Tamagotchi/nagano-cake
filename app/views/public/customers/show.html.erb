@@ -11,27 +11,27 @@
         <table class="table table-bordered">
           <tr>
             <td class="table-active">氏名</td>
-            <td><%= @customer.last_name %> </td>
+            <td><%= @customer.full_name %></td>
           </tr>
           <tr>
             <td class="table-active">カナ</td>
-            <td></td>
+            <td><%= @customer.full_name_furigana %></td>
           </tr>
           <tr>
             <td class="table-active">郵便番号</td>
-            <td></td>
+            <td><%= @customer.postal_code %></td>
           </tr>
           <tr>
             <td class="table-active">住所</td>
-            <td></td>
+            <td><%= @customer.address %></td>
           </tr>
           <tr>
             <td class="table-active">電話番号</td>
-            <td></td>
+            <td><%= @customer.telephone_number %></td>
           </tr>
           <tr>
             <td class="table-active">メールアドレス</td>
-            <td></td>
+            <td><%= @customer.email %></td>
           </tr>
         </table>
       
@@ -39,10 +39,12 @@
         <h5><b>登録情報</b></h5>
         <%= link_to "編集する", url: edit_customers_path, class: "btn btn-success", style: "font-weight: bold;" %>
       </div>
+      
       <div class="mt-5">
         <h5><b>登録情報</b></h5>
         <%= link_to "編集する", url: edit_customers_path, class: "btn btn-success", style: "font-weight: bold;" %>
       </div>
+      
     </div>
   </div>
 </div>
