@@ -13,4 +13,8 @@ class Item < ApplicationRecord
 
   end
 
+  def including_tax_price
+    (excluding_tax_price * 1.1).round
+  end
+
 end
