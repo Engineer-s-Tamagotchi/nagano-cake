@@ -2,6 +2,10 @@
 <%= form_with model: @new_item do |f| %>
 
 <div class="form-group">
+  <label for="item_image">商品画像</label>
+  <%= f.file_field :item_image, accept: "image/*", id:"item_image", class:"form-control" %>
+</div>
+<div class="form-group">
   <label for="item_name">商品名</label>
   <%= f.text_field :name, id:"item_name", class:"form-control" %>
 </div>
@@ -11,7 +15,7 @@
 </div>
 <div class="form-group">
   <label for="item_genre">ジャンル</label>
-  <%= f.text_area :genre, Genre.all.map{|genre| [genre.name,genre.id]},　id:"item_genre", class:"form-control" %>
+  <%= f.select :genre, Genre.all.map{|genre| [genre.name,genre.id]},　id:"item_genre", class:"form-control" %>
 </div>
 <div class="form-group">
   <label for="item_excluding_tax_price">税抜価格</label>
@@ -19,7 +23,10 @@
 </div>
 <div class="form-group">
   <label for="item_is_on_sale">販売ステータス</label>
-  <%= f.text_area :is_on_sale, id:"item_is_on_sale", class:"form-control" %>
+    <%= f.radio_button :is_on_sale, :true, checked: true, id:"item_on_sale", class:"form-control" %>
+    <label for="item_on_sale">販売中</label>
+    <%= f.radio_button :is_on_sale, :flase, id:"item_sales_stop", class:"form-control" %>
+    <label for="item_salea_stop">販売停止中</label>
 </div>
 
 <% end %>
