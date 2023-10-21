@@ -1,24 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :admin,skip:[:registrations,:passwords], controllers:{
-    sessions: "admin/sessions"
-  }
-
-
-  devise_for :customers,skip:[:passwords], controllers:{
-    registrations: "public/registrations",
-    sessions: "public/sessions"
-  }
-
+  
   scope module: :public do
     root to: "homes#top"
     get "about" => "homes#about"
 
     resources :items, only:[:index,:show]
 
-    resource :customers, only:[:edit,:update] do
+    resource :customers, only:[:edit, :update] do
       get "mypage" => "customers#show"
       get "unsubscribe" => "customers#unsubscribe"
-      patch "quit" => "customers/quit"
+      patch "quit" => "customers#quit"
     end
 
     resources :cart_items, only:[:index,:update,:destroy,:create] do
@@ -54,6 +45,15 @@ Rails.application.routes.draw do
 
 
   end
+  
+  devise_for :admin,skip:[:registrations,:passwords], controllers:{
+    sessions: "admin/sessions"
+  }
+  
+  devise_for :customers,skip:[:passwords], controllers:{
+    registrations: "public/registrations",
+    sessions: "public/sessions"
+  }
 
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
