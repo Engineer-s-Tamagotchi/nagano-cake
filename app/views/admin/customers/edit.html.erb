@@ -1,11 +1,15 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
-      <h5 class=" col-md-2 mx-5 mb-5">会員情報編集</h5>
-
-      <%= form_with model: @customer, url: customers_path do |f| %>
+      <h5 class="col-md-4 mb-5"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h5>
+      
+      <%= form_with model: @customer, url: admin_customer_path do |f| %>
         <div class="form-group">
           <table class="table-sm table-borderless col-md-8">
+            <tr>
+              <td>会員ID</td>
+              <td><%= @customer.id %></td>
+            </tr>
             <tr>
               <td class="w-25">氏名</td>
               <td class="w-25"><%= f.text_field :last_name, class: "form-control" %></td>
@@ -34,16 +38,21 @@
               <td><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>
             </tr>
             <tr>
+              <td>会員ステータス</td>
+              <td>
+                <%= f.radio_button :is_active, :true %>
+                <%= f.label :is_active, "有効", {value: :true, class: "d-inline-block"} %>
+                <%= f.radio_button :is_active, :false, class: "ml-5" %>
+                <%= f.label :is_active, "退会", {value: :false, class: "d-inline-block"} %>
+                </td>
+            </tr>
+            <tr>
               <td></td>
-              <td><%= f.submit "編集内容を保存", class: "btn my-2 btn-success btn-block", style: "font-weight: bold;" %></td>
-              <td></td>
-              <td><%= link_to "退会する", unsubscribe_customers_path, class: "btn my-2 btn-danger", style: "font-weight: bold;" %></td>
-              <td></td>
+              <td><%= f.submit "変更を保存", class: "btn btn-lg my-5 btn-success btn-block", style: "font-weight: bold;" %></td>
             </tr>
           </table>
         </div>
       <% end %>
-
     </div>
   </div>
 </div>

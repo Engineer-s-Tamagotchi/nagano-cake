@@ -1,8 +1,9 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
-      <h5 class="col-md-3"><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h5>
-      <table class="table table-borderless col-md-8 mt-4">
+      <h5 class="col-md-3 mb-5"><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h5>
+      
+      <table class="table table-borderless col-md-8">
         <tr>
           <td class="w-25">会員ID</td>
           <td><%= @customer.id %></td>
