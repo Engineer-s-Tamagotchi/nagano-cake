@@ -25,11 +25,7 @@
                 </td>
                 <td><%= customer.email %></td>
                 <td>
-                  <% if customer.is_active %>
-                    <strong style="color: limegreen">有効</strong>
-                  <% else %>
-                    <strong style="color: darkgray">退会</strong>
-                  <% end %>
+                  <%= render 'customer_state', customer: customer %>
                 </td>
                 <td colspan="2"></td>
               </tr>
