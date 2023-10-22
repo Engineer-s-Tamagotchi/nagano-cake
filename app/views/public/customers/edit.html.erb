@@ -5,33 +5,8 @@
 
       <%= form_with model: @customer, url: customers_path do |f| %>
         <div class="form-group">
-          <table class="table-sm table-borderless">
-            <tr>
-              <td class="w-25">氏名</td>
-              <td><%= f.text_field :last_name, class: "form-control" %></td>
-              <td><%= f.text_field :first_name, class: "form-control ml-4" %></td>
-            </tr>
-            <tr>
-              <td>フリガナ</td>
-              <td><%= f.text_field :last_name_furigana, class: "form-control" %></td>
-              <td><%= f.text_field :first_name_furigana, class: "form-control ml-4" %></td>
-            </tr>
-            <tr>
-              <td>郵便番号</td>
-              <td><%= f.text_field :postal_code, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td>住所</td>
-              <td colspan="6"><%= f.text_field :address, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td>電話番号</td>
-              <td><%= f.telephone_field :telephone_number,class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td>メールアドレス</td>
-              <td><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>
-            </tr>
+          <table class="table-sm table-borderless col-md-8">
+            <%= render "form", f: f %>
             <tr>
               <td></td>
               <td><%= f.submit "編集内容を保存", class: "btn my-2 btn-success btn-block", style: "font-weight: bold;" %></td>
