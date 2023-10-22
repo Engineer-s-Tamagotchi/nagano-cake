@@ -1,11 +1,11 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
-      <h5 class="col-md-4 mb-5"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h5>
+      <h5 class="col-md-4"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h5>
 
       <%= form_with model: @customer, url: admin_customer_path do |f| %>
         <div class="form-group">
-          <table class="table-sm table-borderless col-md-8">
+          <table class="table-sm table-borderless col-md-8 mt-5">
             <tr>
               <td>会員ID</td>
               <td><%= @customer.id %></td>
