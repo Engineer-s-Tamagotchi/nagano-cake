@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <h5 class="col-md-4 mb-5"><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h5>
-      
+
       <%= form_with model: @customer, url: admin_customer_path do |f| %>
         <div class="form-group">
           <table class="table-sm table-borderless col-md-8">
@@ -10,33 +10,7 @@
               <td>会員ID</td>
               <td><%= @customer.id %></td>
             </tr>
-            <tr>
-              <td class="w-25">氏名</td>
-              <td class="w-25"><%= f.text_field :last_name, class: "form-control" %></td>
-              <td class="w-25"><%= f.text_field :first_name, class: "form-control ml-4" %></td>
-              <td class="w-25"></td>
-            </tr>
-            <tr>
-              <td>フリガナ</td>
-              <td><%= f.text_field :last_name_furigana, class: "form-control" %></td>
-              <td><%= f.text_field :first_name_furigana, class: "form-control ml-4" %></td>
-            </tr>
-            <tr>
-              <td>郵便番号</td>
-              <td><%= f.text_field :postal_code, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td>住所</td>
-              <td colspan="6"><%= f.text_field :address, class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td>電話番号</td>
-              <td><%= f.telephone_field :telephone_number,class: "form-control" %></td>
-            </tr>
-            <tr>
-              <td>メールアドレス</td>
-              <td><%= f.email_field :email, autocomplete: "email", class: "form-control" %></td>
-            </tr>
+            <%= render "public/customers/form", f: f %>
             <tr>
               <td>会員ステータス</td>
               <td>
