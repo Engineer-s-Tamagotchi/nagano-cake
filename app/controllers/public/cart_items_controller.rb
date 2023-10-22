@@ -12,7 +12,6 @@ class Public::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
     @billing_price = 0
-    @order_details = OrderDetails.new
   end
 
   def update
