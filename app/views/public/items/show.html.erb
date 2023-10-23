@@ -6,7 +6,7 @@
 
 ￥<%= @item.including_tax_price %>(税込)
 
-<%= form_with model:@cart_item, url:cart_items_path, method: :post do |f| %>
+<%= form_with model:@cart_item, url:cart_items_path do |f| %>
 
 <%= f.hidden_field :item_id, value: @item.id %>
 
