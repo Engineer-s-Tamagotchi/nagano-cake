@@ -5,7 +5,8 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @cart_items = Cart_items.find_by(customer_id: current_customer.id)
+    @order = Order.new
+    @cart_items = CartItem.where(customer_id: current_customer.id)
     @payment_method = params[:order][:payment_method]
     if params[:selected_address] == 0
       @postal_code = current_customer.postal_code
@@ -36,3 +37,8 @@ class Public::OrdersController < ApplicationController
 
 end
 
+private
+  
+  def order_params
+    params.require(:order).permit(:name, :billing_price, :payment_method, :postage, :postal_code, :address, :status)
+  end
