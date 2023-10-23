@@ -1,0 +1,17 @@
+<h1>商品詳細</h1>
+
+<%= image_tag @item.get_item_image(400,400) %>
+
+<%= @item.name %>
+
+￥<%= @item.including_tax_price %>(税込)
+
+<%= form_with model:@cart_item, url:cart_items_path do |f| %>
+
+<%= f.hidden_field :item_id, value: @item.id %>
+
+<%= f.select :amount, (1..10).to_a.map{ |q| ["#{q}個",q] }, include_blank:"個数選択" %>
+
+<%= f.submit "カードに入れる", class:"btn btn-success" %>
+
+<% end %>

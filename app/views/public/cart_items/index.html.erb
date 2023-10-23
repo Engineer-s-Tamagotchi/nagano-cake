@@ -1,0 +1,42 @@
+<h1>ショッピングカート</h1>
+
+<%= button_to "カートを空にする", destroy_all_cart_items_path, method: :delete %>
+
+<table>
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th></th>
+    </tr>
+  </thead>
+  <% @cart_items.each do |cart_item| %>
+  <tbody>
+    <tr>
+      <td><%= image_tag cart_item.item.get_item_image(100,100) %><%= cart_item.item.name %></td>
+      <td><%= cart_item.item.including_tax_price %></td>
+      <%= form_with model:cart_item, url:cart_item do |f| %>
+      <td><%= f.select :amount, (1..10).to_a, include_blank: cart_item.amount %><%= f.submit"変更" %></td>
+      <% end %>
+      <td><%= cart_item.subtotal %></td>
+      <td><%= button_to "削除する", cart_item_path(cart_item), method: :delete %></td>
+      <% @billing_price += cart_item.item.including_tax_price * cart_item.amount %>
+    </tr>
+  </tbody>
+  <% end %>
+  <%= link_to "お買い物を続ける", items_path %>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>合計金額</th>
+      <td><%= @billing_price %></td>
+    </tr>
+  </thead>
+  <%= link_to "注文を確定する", new_order_path %>
+
+</table>
+

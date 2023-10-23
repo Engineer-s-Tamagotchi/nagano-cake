@@ -1,0 +1,13 @@
+<h1>商品一覧(全<%= @items.count %>件)</h1>
+ <% @items.each do |item| %>
+
+ <%= link_to item_path(item) do %>
+ <%= image_tag item.get_item_image(200,200) %>
+ <% end %>
+
+ <%= link_to item.name, item_path(item) %>
+
+ <%= item.including_tax_price %>円
+
+
+ <% end %>
