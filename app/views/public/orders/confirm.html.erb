@@ -70,13 +70,12 @@
       <div class="row justify-content-center">
         <div class="col-md-4 mt-5">
           <%= form_with model: @order, url: orders_path do |f| %>
-            <% f.hidden_field :name, value: @order_name %>
-            <% f.hidden_field :payment_method, value: @payment_method %>
-            <% f.hidden_field :postal_code, value: @postal_code %>
-            <% f.hidden_field :address, value: @order_address %>
-            <% f.hidden_field :postage, value: @order_postage %>
-            <% f.hidden_field :billing_price, value: @billing_price %>
-            <% f.hidden_field :status, value: @order_payment_method %>
+            <%= f.hidden_field :name, value: @order_name %>
+            <%= f.hidden_field :payment_method, value: Order.payment_methods.key(@order_payment_method) %>
+            <%= f.hidden_field :postal_code, value: @order_postal_code %>
+            <%= f.hidden_field :address, value: @order_address %>
+            <%= f.hidden_field :postage, value: @order_postal_code %>
+            <%= f.hidden_field :billing_price, value: @billing_price %>
             <%= f.submit "注文を確定する", class: "btn btn-success" %>
           <% end %>
         </div>
