@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <table>
+        <thaed>
+          <tr>
+            <th>購入者</th>
+            <th><%= link_to @order.name, admin_customers_path %></th>
+          </tr>
+
+          <tr>
+            <th>注文日</th>
+            <th><%= @order.created_at.strftime("%Y/%m/%d") %></th>
+          </tr>
+
+          <tr>
+            <th>配送先</th>
+            <th><%= simple_format(@order.postal_code_and_address_and_name) %></th>
+          </tr>
+
+          <tr>
+            <th>支払方法</th>
+            <th><%= @order.payment_method_i18n %></th>
+          </tr>
+
+          <%= form_with model:@order, url:admin_order_path(@order) do |f| %>
+          <tr>
+            <th>注文ステータス</th>
+            <th><%= f.select :status, (0..4).to_a.map{ |q| ["#{ I18n.t("enums.order.status.#{Order.statuses.key(q)}")}",Order.statuses.key(q)] }, { selected: @order.status } %></th>
+            <th><%= f.submit "更新" %></th>
+          </tr>
+          <% end %>
+        </thaed>
+      </table>
+
+      <table>
+        <thaed>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>制作ステータス</th>
+            <th></th>
+          </tr>
+        </thaed>
+        <body>
+          <% @order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item.name %></td>
+            <td><%= order_detail.including_tax_price %></td>
+            <td><%= order_detail.amount %></td>
+            <td><%= order_detail.subtotal %></td>
+            <%= form_with model:order_detail, url:admin_order_order_detail_path(order_detail) do |f| %>
+              <td><%= f.select :production_status, (0..3).to_a.map{ |q| ["#{ I18n.t("enums.order_detail.production_status.#{OrderDetail.production_statuses.key(q)}")}",OrderDetail.production_statuses.key(q)] }, { selected: order_detail.production_status } %></td>
+              <td><%= f.submit "更新" %></td>
+            <% end %>
+          </tr>
+          <% end %>
+        </body>
+      </table>
+    </div>
+  </div>
+</div>
+
