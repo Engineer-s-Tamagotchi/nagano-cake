@@ -1,33 +1,35 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col">
+
       <div class="row">
         <div class="col-md-2 offset-1 mb-5 d-flex justify-content-center">
           <h5 class="px-3">注文履歴詳細</h5>
         </div>
       </div>
+
       <div class="row">
         <div class="col-md-8">
           <strong>注文情報</strong>
-          <table class="table table-bordered">
+          <table class="table table-bordered mt-3">
             <tbody>
-              <tr>
-                <th class="table-active">注文日</th>
+              <tr class="table-active">
+                <th>注文日</th>
                 <td><%= @order.created_at.strftime("%Y/%m/%d") %></td>
               </tr>
               <tr>
-                <th class="table-active">配送先</th>
+                <th>配送先</th>
                 <td><%= "〒" + @order.postal_code %></br>
                     <%= @order.address %></br>
                     <%= @order.name %>
                 </td>
               </tr>
               <tr>
-                <th class="table-active">支払い方法</th>
+                <th>支払い方法</th>
                 <td><%= @order.payment_method_i18n %></td>
               </tr>
               <tr>
-                <th class="table-active">ステータス</th>
+                <th>ステータス</th>
                 <td><%= @order.status_i18n %></td>
               </tr>
             </tbody>
@@ -35,52 +37,51 @@
         </div>
         <div class="col-md-4">
           <strong>請求情報</strong>
-          <table class="table table-bordered">
+          <table class="table table-bordered mt-3">
             <tbody>
-              <tr>
-                <th class="table-active">商品合計</th>
-                <td></td>
+              <tr class="table-active">
+                <th>商品合計</th>
+                <td><%= (@order.billing_price - 800).to_s(:delimited) %></td>
               </tr>
               <tr>
-                <th class="table-active">配送料</th>
+                <th>配送料</th>
                 <td><%= @order.postage %></td>
               </tr>
               <tr>
-                <th class="table-active">ご請求額</th>
+                <th>ご請求額</th>
                 <td><%= @order.billing_price.to_s(:delimited) %></td>
               </tr>
             </tbody>
           </table>
-          
-          <div class="row">
-            <div class="col">
-              <strong>注文内容</strong>
-              <table class="table-bordered">
-                <thead>
-                  <tr>
-                    <th>商品名</th>
-                    <th>単価(税込)</th>
-                    <th>個数</th>
-                    <th>小計</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <% @order.order_details.each do |order_detail| %>
-                  <tr>
-                    <td><%= order_detail.item.name %></td>
-                    <td><%= order_detail.including_tax_price %></td>
-                    <td><%= order_detail.amount %></td>
-                    <td></td>
-                  </tr>
-                  <% end %>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          
-          
         </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-10">
+          <strong>注文内容</strong>
+          <table class="table table-bordered mt-3">
+            <thead>
+              <tr class="table-active">
+                <th style="width: 65%;">商品名</th>
+                <th>単価 (税込)</th>
+                <th>個数</th>
+                <th>小計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order.order_details.each do |order_detail| %>
+              <tr>
+                <td><%= order_detail.item.name %></td>
+                <td><%= order_detail.including_tax_price %></td>
+                <td><%= order_detail.amount %></td>
+                <td><%= order_detail.subtotal %></td>
+              </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
