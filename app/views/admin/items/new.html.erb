@@ -25,12 +25,12 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :excluding_tax_price, "税抜価格" %></label>
+          <%= f.label :excluding_tax_price, "税抜価格" %>
           <%= f.text_field :excluding_tax_price, class:"form-control" %>円
         </div>
 
         <div class="form-group">
-          <label for="item_is_on_sale">販売ステータス</label>
+          <%= f.label :is_on_sale, "販売ステータス" %>
             <%= f.radio_button :is_on_sale, :true, checked: true, id:"item_on_sale", class:"form-control" %>
             <label for="item_on_sale">販売中</label>
             <%= f.radio_button :is_on_sale, :flase, id:"item_sales_stop", class:"form-control" %>
