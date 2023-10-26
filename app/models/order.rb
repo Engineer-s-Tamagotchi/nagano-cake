@@ -21,4 +21,8 @@ class Order < ApplicationRecord
     "〒#{self.postal_code} #{self.address}\n#{self.name}"
   end
 
+  def billing_price_sum
+    self.billing_price + self.postage
+  end
+
 end

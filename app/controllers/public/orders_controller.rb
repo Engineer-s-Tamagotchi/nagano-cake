@@ -1,5 +1,7 @@
 class Public::OrdersController < ApplicationController
 
+  before_action :access_limit, only: [:show]
+
   def new
     @order = Order.new
   end
@@ -71,4 +73,11 @@ private
 
   def order_params
     params.require(:order).permit(:name, :billing_price, :payment_method, :postage, :postal_code, :address)
+  end
+
+  def access_limit
+    order = Order.find(params[:id])
+    unless order.customer_id == current_customer.id
+      redirect_to orders_path
+    end
   end

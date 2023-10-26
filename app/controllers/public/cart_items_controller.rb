@@ -1,9 +1,8 @@
 class Public::CartItemsController < ApplicationController
+
   def create
     item_id = params[:cart_item][:item_id]
     existing_cart_item = current_customer.cart_items.find_by(item_id: item_id)
-    # byebug
-
     if existing_cart_item
       amount = params[:cart_item][:amount].to_i
       existing_cart_item.update(amount: existing_cart_item.amount + amount)

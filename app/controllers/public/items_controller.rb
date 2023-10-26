@@ -1,4 +1,5 @@
 class Public::ItemsController < ApplicationController
+
   def index
     @items = Item.all
   end
@@ -7,7 +8,5 @@ class Public::ItemsController < ApplicationController
     @item = Item.find(params[:id])
     @cart_item = CartItem.new
   end
-
-
 
 end
