@@ -1,74 +1,66 @@
 <div class="container mt-5">
   <div class ="row">
     <div class="col">
-      <h1>商品新規登録</h1>
+      <h2>商品新規登録</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 mx-auto mb-5">
       <%= form_with model: @item, url:admin_items_path do |f| %>
+      <table>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :item_image, "商品画像" %></th>
+            <th><%= f.file_field :item_image, accept: "image/*" %></th>
+          </div>
+        </tr>
 
-        <div class="form-group">
-          <%= f.label :item_image, "商品画像" %>
-          <%= f.file_field :item_image, accept: "image/*", class: "form-control-file" %>
-        </div>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :name, "商品名" %></th>
+            <td><%= f.text_field :name, placeholder:"商品名" %></td>
+          </div>
+        </tr>
 
-        <div class="form-group">
-          <%= f.label :name, "商品名" %>
-          <%= f.text_field :name, class: "form-control-file" %>
-        </div>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :explanation, "商品説明" %></th>
+            <td><%= f.text_area :explanation, placeholder:"説明文" %></td>
+          </div>
+        </tr>
 
-        <div class="form-group">
-          <%= f.label :explanation, "商品説明" %>
-          <%= f.text_area :explanation, class: "form-control-file" %>
-        </div>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :genre_id, "ジャンル" %></th>
+            <td><%= f.select :genre_id, Genre.all.map{|genre| [genre.name,genre.id]} %></td>
+          </div>
+        </tr>
 
-        <div class="form-group">
-          <%= f.label :genre_id, "ジャンル" %>
-          <%= f.select :genre_id, Genre.all.map{|genre| [genre.name,genre.id]}, class:"form-control" %>
-        </div>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :excluding_tax_price, "税抜価格" %></th>
+            <td><%= f.text_field :excluding_tax_price, placeholder:"1000" %>円</td>
+          </div>
+        </tr>
 
-        <div class="form-group">
-          <%= f.label :excluding_tax_price, "税抜価格" %>
-          <%= f.text_field :excluding_tax_price, class:"form-control" %>円
-        </div>
+        <tr>
+          <div class="form-group">
+            <th><%= f.label :is_on_sale, "販売ステータス" %></th>
+              <td><%= f.radio_button :is_on_sale, :true, checked: true %>
+                  <label for="item_on_sale">販売中</label>
+                  <%= f.radio_button :is_on_sale, :flase %>
+                  <label for="item_sales_stop">販売停止中</label>
+              </td>
+          </div>
+        </tr>
 
-        <div class="form-group">
-          <%= f.label :is_on_sale, "販売ステータス" %>
-            <%= f.radio_button :is_on_sale, :true, checked: true, id:"item_on_sale", class:"form-control" %>
-            <label for="item_on_sale">販売中</label>
-            <%= f.radio_button :is_on_sale, :flase, id:"item_sales_stop", class:"form-control" %>
-            <label for="item_sales_stop">販売停止中</label>
-        </div>
-        <div><%= f.submit "新規登録", class:"btn btn-success" %></div>
-        <% end %>
-      </div>
+        <tr>
+          <div>
+            <div><%= f.submit "新規登録", class:"btn btn-success" %></div>
+          </div>
+        </tr>
+      <% end %>
+      </table>
+    </div>
   </div>
 </div>
-
-<div class="form-group">
-  <label for="item_name">商品名</label>
-  <%= f.text_field :name, id:"item_name", class:"form-control" %>
-</div>
-
-<div class="form-group">
-  <label for="item_explanation">商品説明</label>
-  <%= f.text_area :explanation, id:"item_explanation", class:"form-control" %>
-</div>
-
-<div class="form-group">
-  <label for="item_genre">ジャンル</label>
-  <%= f.select :genre_id, Genre.all.map{|genre| [genre.name,genre.id]},　id:"item_genre", class:"form-control" %>
-</div>
-
-<div class="form-group">
-  <label for="item_excluding_tax_price">税抜価格</label>
-  <%= f.text_field :excluding_tax_price, id:"item_excluding_tax_price", class:"form-control" %>円
-</div>
-
-<div class="form-group">
-  <label for="item_is_on_sale">販売ステータス</label>
-    <%= f.radio_button :is_on_sale, :true, checked: true, id:"item_on_sale", class:"form-control" %>
-    <label for="item_on_sale">販売中</label>
-    <%= f.radio_button :is_on_sale, :flase, id:"item_sales_stop", class:"form-control" %>
-    <label for="item_sales_stop">販売停止中</label>
-</div>
-<div><%= f.submit "新規登録", class:"btn btn-success" %></div>
-<% end %>
-
