@@ -1,5 +1,5 @@
 <div class="container mt-5">
-  
+
   <div class="row">
     <div class="col-md-10 mx-auto d-flex justify-content-center">
       <div class="col-md-4 px-3">
@@ -19,14 +19,14 @@
       </div>
     </div>
   </div>
-  
+
   <div class="row">
     <div class="col-md-10 mx-auto ">
       <div class="form-group mt-3">
         <%= form_with model:@cart_item, url:cart_items_path do |f| %>
           <%= f.hidden_field :item_id, value: @item.id %>
           <div class="amount-field col-md-2 d-inline-block pl-4 offset-5">
-            <%= f.select :amount, (1..10).to_a.map{ |q| ["#{q}個",q] }, include_blank:"個数選択" %>  
+            <%= f.select :amount, (1..10).to_a.map{ |q| ["#{q}個",q] } %>
           </div>
           <div class="btn-field col-md-2 d-inline-block">
             <%= f.submit "カートに入れる", class:"btn btn-success" %>
@@ -35,7 +35,7 @@
       </div>
     </div>
   </div>
-  
+
 </div>
 
 
