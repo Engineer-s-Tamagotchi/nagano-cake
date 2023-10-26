@@ -1,40 +1,63 @@
-<h1>商品編集</h1>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>商品編集</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <%= form_with model: @item, url:admin_item_path do |f| %>
+      <table>
+        <tr>
+          <div class="form-group">
+            <th><label for="item_image">商品画像</label></th>
+            <td><%= f.file_field :item_image, accept: "image/*", id:"item_image" %></td>
+          </div>
+        </tr>
 
-<%= form_with model: @item, url:admin_item_path do |f| %>
+        <tr>
+          <div class="form-group">
+            <th><label for="item_name">商品名</label></th>
+            <td><%= f.text_field :name, id:"item_name" %></td>
+          </div>
+        </tr>
 
-<div class="form-group">
-  <label for="item_image">商品画像</label>
-  <%= f.file_field :item_image, accept: "image/*", id:"item_image", class:"form-control" %>
+        <tr>
+          <div class="form-group">
+            <th><label for="item_explanation">商品説明</label></th>
+            <td><%= f.text_area :explanation, id:"item_explanation", size: "50x4" %></td>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <th><label for="item_genre">ジャンル</label></th>
+            <td><%= f.select :genre_, Genre.all.map{|genre| [genre.name,genre.id]}, id:"item_genre" %></td>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <th><label for="item_excluding_tax_price">税抜価格</label></th>
+            <td><%= f.text_field :excluding_tax_price, id:"item_excluding_tax_price" %>円</td>
+          </div>
+        </tr>
+
+        <tr>
+          <div class="form-group">
+            <th><label class="item_is_on_sale">販売ステータス</label></th>
+            <td><%= f.radio_button :is_on_sale, :true, checked:true, id:"item_on_sale" %>
+            <label class="item_on_sale">販売中</label>
+            <%= f.radio_button :is_on_sale, :false, id:"item_sales_stop" %>
+            <label class="item_sales_stop">販売停止中</label></td>
+          </div>
+        </tr>
+
+        <tr>
+          <div><%= f.submit "変更を保存", class:"btn btn-success" %></div>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<div class="form-group">
-  <label for="item_name">商品名</label>
-  <%= f.text_field :name, id:"item_name", class:"form-control" %>
-</div>
-
-<div class="form-group">
-  <label for="item_explanation">商品説明</label>
-  <%= f.text_area :explanation, id:"item_explanation", class:"form-control" %>
-</div>
-
-<div class="form-group">
-  <label for="item_genre">ジャンル</label>
-  <%= f.select :genre_, Genre.all.map{|genre| [genre.name,genre.id]}, id:"item_genre", class:"form-control" %>
-</div>
-
-<div class="form-group">
-  <label for="item_excluding_tax_price">税抜価格</label>
-  <% f.text_field :excluding_tax_price, id:"item_excluding_tax_price", class:"form-control" %>円
-</div>
-
-<div class="form-group">
-  <label class="item_is_on_sale">販売ステータス</label>
-    <%= f.radio_button :is_on_sale, :true, checked:true, id:"item_on_sale", class:"form-control" %>
-    <label class="item_on_sale">販売中</label>
-    <%= f.radio_button :is_on_sale, :false, id:"item_sales_stop", class:"form-control" %>
-    <label class="item_sales_stop">販売停止中</label>
-</div>
-
-<div><%= f.submit "変更を保存", class:"btn btn-success" %></div>
-
-<% end %>
