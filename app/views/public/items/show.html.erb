@@ -1,17 +1,41 @@
-<h1>商品詳細</h1>
+<div class="container mt-5">
+  
+  <div class="row">
+    <div class="col-md-10 mx-auto d-flex justify-content-center">
+      <div class="col-md-4 px-3">
+        <div class="item-image text-center">
+          <%= image_tag @item.get_item_image(400,400) %>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="item-box">
+          <h3><strong><%= @item.name %></strong></h3>
+          <p><%= @item.explanation %></p>
+          <div class="item_price d-flex align-items-end mb-2 mt-5">
+           <h5 class="mb-0"><strong>¥<%= @item.including_tax_price.to_s(:delimited) %></strong></h5>
+           <span style="font-size: 12px">(税込)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row">
+    <div class="col-md-10 mx-auto ">
+      <div class="form-group mt-3">
+        <%= form_with model:@cart_item, url:cart_items_path do |f| %>
+          <%= f.hidden_field :item_id, value: @item.id %>
+          <div class="amount-field col-md-2 d-inline-block pl-4 offset-5">
+            <%= f.select :amount, (1..10).to_a.map{ |q| ["#{q}個",q] }, include_blank:"個数選択" %>  
+          </div>
+          <div class="btn-field col-md-2 d-inline-block">
+            <%= f.submit "カートに入れる", class:"btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  
+</div>
 
-<%= image_tag @item.get_item_image(400,400) %>
 
-<%= @item.name %>
-
-￥<%= @item.including_tax_price %>(税込)
-
-<%= form_with model:@cart_item, url:cart_items_path do |f| %>
-
-<%= f.hidden_field :item_id, value: @item.id %>
-
-<%= f.select :amount, (1..10).to_a.map{ |q| ["#{q}個",q] }, include_blank:"個数選択" %>
-
-<%= f.submit "カードに入れる", class:"btn btn-success" %>
-
-<% end %>
