@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <header style="background-color: #fff7d4;">
+    <header>
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand p-3" href="/">NaganoCake</a>
@@ -39,13 +39,13 @@
               </li>
 
               <% elsif customer_signed_in? %>
-              <li class="nav-item">
-                ようこそ <%= link_to mypage_customers_path do %>
-                <strong>
+              <li class="nav-item d-flex align-items-center mr-3">
+                ようこそ、<%= link_to mypage_customers_path do %>
+                <span>
                   <%= current_customer.last_name %><%= current_customer.first_name %>
-                </strong>
+                </span>
                 <% end %>
-                  さん
+                  さん！
               </li>
               <li class="nav-item">
                 <%= link_to "マイページ", mypage_customers_path, class: 'btn btn-default' %>
@@ -78,23 +78,12 @@
           </div>
         </div>
       </nav>
-      <div class="border-end">
-        <div class="border border-dark">
-        </div>
-      </div>
     </header>
-    <main style="background-color: #ffd95a">
-    <%= yield %>
+    
+    <main class="py-5">
+      <%= yield %>
     </main>
-    <footer>
-      <div class="fixed-bottom" style="background-color: #c07f00;">
-          <div class="border-top">
-            <div class="mb-5">
-            <div class="border border-dark">
-            </div>
-        　</div>
-        </div>
-      </div>
-    </footer>
+    
+    <footer></footer>
   </body>
 </html>

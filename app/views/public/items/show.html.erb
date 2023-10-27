@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container">
 
   <div class="row">
     <div class="col-md-10 mx-auto d-flex justify-content-center">
@@ -13,7 +13,7 @@
           <p><%= @item.explanation %></p>
           <div class="item_price d-flex align-items-end mb-2 mt-5">
            <h5 class="mb-0"><strong>¥<%= @item.including_tax_price.to_s(:delimited) %></strong></h5>
-           <span style="font-size: 12px">(税込)</span>
+           <span class="mx-1" style="font-size: 12px">(税込)</span>
           </div>
         </div>
       </div>
