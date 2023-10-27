@@ -38,7 +38,7 @@
           <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
           <tr>
             <th>注文ステータス</th>
-            <td class="d-flex align-items-center"><%= f.select :status, (0..4).to_a.map{ |q| ["#{ I18n.t("enums.order.status.#{Order.statuses.key(q)}")}",Order.statuses.key(q)] }, { selected: @order.status } %><%= f.submit "更新", class:"btn btn-success ml-3" %></td>
+            <td class="d-flex align-items-center"><%= f.select :status, (0..4).to_a.map{ |q| ["#{ I18n.t("enums.order.status.#{Order.statuses.key(q)}")}",Order.statuses.key(q)] }, { selected: @order.status } %> <%= f.submit "更新", class:"btn btn-success ml-3" %></td>
           </tr>
           <% end %>
         </thaed>
@@ -60,15 +60,15 @@
         </thaed>
         <body>
           <% @order_details.each do |order_detail| %>
+            <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail) do |f| %>
           <tr>
             <td><%= order_detail.item.name %></td>
             <td><%= number_to_currency(order_detail.including_tax_price) %></td>
             <td><%= order_detail.amount %></td>
             <td><%= order_detail.subtotal %></td>
-            <%= form_with model: order_detail, url: admin_order_order_detail_path(order_detail) do |f| %>
-              <td class="d-flex align-item-center"><%= f.select :production_status, (0..3).to_a.map{ |q| ["#{ I18n.t("enums.order_detail.production_status.#{OrderDetail.production_statuses.key(q)}")}",OrderDetail.production_statuses.key(q)] }, { selected: order_detail.production_status } %><%= f.submit "更新", class:"btn btn-success ml-3" %></td>
-            <% end %>
+              <td class="d-flex align-item-center"><%= f.select :production_status, (0..3).to_a.map{ |q| ["#{ I18n.t("enums.order_detail.production_status.#{OrderDetail.production_statuses.key(q)}")}",OrderDetail.production_statuses.key(q)] }, { selected: order_detail.production_status } %> <%= f.submit "更新", class:"btn btn-success ml-3" %></td>
           </tr>
+            <% end %>
           <% end %>
         </body>
       </table>
