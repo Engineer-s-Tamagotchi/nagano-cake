@@ -20,29 +20,28 @@
             <th></th>
           </tr>
         </thead>
-        <% @cart_items.each do |cart_item| %>
         <tbody>
+          <% @cart_items.each do |cart_item| %>
           <tr>
             <td><%= image_tag cart_item.item.get_item_image(100,100) %><%= cart_item.item.name %></td>
-            <td><%= cart_item.item.including_tax_price %></td>
+            <td class="align-middle"><%= cart_item.item.including_tax_price %></td>
             <%= form_with model:cart_item, url:cart_item do |f| %>
-            <td><%= f.select :amount, (1..10).to_a, include_blank: cart_item.amount %><%= f.submit"変更" %></td>
+            <td class="align-middle"><%= f.select :amount, (1..10).to_a, include_blank: cart_item.amount %><%= f.submit"変更" %></td>
             <% end %>
-            <td><strong><%= cart_item.subtotal %></strong></td>
-            <td><%= button_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
+            <td class="align-middle"><strong><%= cart_item.subtotal %></strong></td>
+            <td class="align-middle"><%= button_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
             <% @billing_price += cart_item.item.including_tax_price * cart_item.amount %>
           </tr>
-        </tbody>
-        <% end %>
-        <thead>
+          <% end %>
           <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th>合計金額</th>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>合計金額</strong></td>
             <td><strong><%= @billing_price %></strong></td>
           </tr>
-        </thead>
+        </tbody>
+        
       </table>
     </div>
   </div>
