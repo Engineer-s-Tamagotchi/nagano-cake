@@ -9,7 +9,7 @@
      <div class="col mb-5" style="font-weight: bold;">
        <%= link_to item_path(item) do %>
        <div class="item-image text-center">
-        <%= image_tag item.get_item_image(200,200), class: "img-fluid", style: "max-width: 100%; height: auto;" %></br>
+        <%= image_tag item.get_item_image(200,200), class: "img-fluid"%></br>
        </div>
        <% end %>
       <div class="item-name mt-2">
@@ -21,6 +21,8 @@
      </div>
     <% end %>
    </div>
+   
+   <%= paginate @items %>
    
   </div>
  </div>
