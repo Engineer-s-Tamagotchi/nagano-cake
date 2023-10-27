@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      
+      <h3>ジャンル編集</h3>
+      
+      <div class="mt-5">
+        <%= form_with model: @genre, url: admin_genre_path, method: :patch, local:true do |f| %>
+          <%= f.label :name, "ジャンル名" %>
+          <%= f.text_field :name, value: @genre.name %>
+          <%= f.submit "変更を保存", class: "btn btn-success py-1" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h5 class=" col-md-2 mx-5 mb-5">会員情報編集</h5>
+
+      <%= form_with model: @customer, url: customers_path do |f| %>
+        <div class="form-group">
+          <table class="table-sm table-borderless col-md-8">
+            <%= render "form", f: f %>
+            <tr>
+              <td></td>
+              <td><%= f.submit "編集内容を保存", class: "btn my-2 btn-success btn-block", style: "font-weight: bold;" %></td>
+              <td></td>
+              <td><%= link_to "退会する", unsubscribe_customers_path, class: "btn my-2 btn-danger", style: "font-weight: bold;" %></td>
+              <td></td>
+            </tr>
+          </table>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

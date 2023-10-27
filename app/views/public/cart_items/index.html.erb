@@ -1,0 +1,61 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>ショッピングカート</h2>
+    </div>
+    <div class="col">
+      <%= button_to "カートを空にする", destroy_all_cart_items_path, method: :delete %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-10 px-sm-0 mx-auto">
+      <table class="table table-bordred">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+          <tr>
+            <td><%= image_tag cart_item.item.get_item_image(100,100) %><%= cart_item.item.name %></td>
+            <td class="align-middle"><%= cart_item.item.including_tax_price %></td>
+            <%= form_with model:cart_item, url:cart_item do |f| %>
+            <td class="align-middle"><%= f.select :amount, (1..10).to_a, include_blank: cart_item.amount %><%= f.submit"変更" %></td>
+            <% end %>
+            <td class="align-middle"><strong><%= cart_item.subtotal %></strong></td>
+            <td class="align-middle"><%= button_to "削除する", cart_item_path(cart_item), method: :delete, class: "btn btn-danger" %></td>
+            <% @billing_price += cart_item.item.including_tax_price * cart_item.amount %>
+          </tr>
+          <% end %>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><strong>合計金額</strong></td>
+            <td><strong><%= @billing_price %></strong></td>
+          </tr>
+        </tbody>
+        
+      </table>
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <%= link_to "お買い物を続ける", root_path, class: "btn btn-outline-primary" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-2 mx-auto text-center">
+      <% if @cart_items.any? %>
+        <%= link_to "情報入力に進む", new_order_path, class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>

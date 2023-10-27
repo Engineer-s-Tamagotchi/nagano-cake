@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h5>マイページ</h5>
+      <div style="color: green;"><%= flash[:success] %></div>
+
+      <div class="row mt-5">
+        <div class="col-md-3 d-flex justify-content-between align-items-center p-0">
+          <h5 class="mb-0"><b>登録情報</b></h5>
+          <%= link_to edit_customers_path do %>
+            <span class="btn btn-sm btn-success d-inline px-3" style="font-weight: bold;">編集する</span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <table class="table table-bordered border-dark">
+          <tr>
+            <td class="table-active w-25">氏名</td>
+            <td><%= @customer.full_name %></td>
+          </tr>
+          <tr>
+            <td class="table-active">カナ</td>
+            <td><%= @customer.full_name_furigana %></td>
+          </tr>
+          <tr>
+            <td class="table-active">郵便番号</td>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <td class="table-active">住所</td>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <td class="table-active">電話番号</td>
+            <td><%= @customer.telephone_number %></td>
+          </tr>
+          <tr>
+            <td class="table-active">メールアドレス</td>
+            <td><%= @customer.email %></td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-3 d-flex justify-content-between align-items-center p-0">
+          <h5 class="mb-0"><b>配送先</b></h5>
+          <%= link_to addresses_path do %>
+            <span class="btn btn-sm btn-primary d-inline px-3" style="font-weight: bold;">一覧を見る</span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-md-3 d-flex justify-content-between align-items-center p-0">
+          <h5 class="mb-0"><b>注文履歴</b></h5>
+          <%= link_to orders_path do %>
+            <span class="btn btn-sm btn-primary d-inline px-3" style="font-weight: bold;">一覧を見る</span>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
